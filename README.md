@@ -5,12 +5,14 @@
 ## 📋 Project Overview
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2f3640', 'textColor': '#ffffff', 'lineColor': '#ffffff', 'primaryBorderColor': '#ffffff'}}}%%
 graph LR
     A[Web Scraping] --> B[Data Processing]
     B --> C[Data Storage]
     C --> D[Analysis]
     D --> E[Visualization]
     E --> F[Insights]
+
 ```
 
 This data analytics project focuses on scraping movie review data from IMDb's top 250 movies, followed by comprehensive analysis to derive insights about movie ratings, trends over time, and correlations between different movie attributes. 
@@ -35,7 +37,7 @@ This data analytics project focuses on scraping movie review data from IMDb's to
 ## 🔄 Data Flow
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2f3640', 'textColor': '#2f3640', 'lineColor': '#2f3640', 'primaryBorderColor': '#2f3640'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2f3640', 'textColor': '#ffffff', 'lineColor': '#ffffff', 'primaryBorderColor': '#ffffff'}}}%%
 flowchart TD
     A[IMDb Website] -->|Web Scraping| B[Raw Data]
     B -->|Data Cleaning| C[Processed Data]
@@ -43,12 +45,13 @@ flowchart TD
     C -->|Visualization| E[Charts & Graphs]
     D --> F[Final Report]
     E --> F
+
 ```
 
 ## 📊 Analysis Framework
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#2f3640', 'lineColor': '#2f3640', 'fontSize': '16px'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2f3640', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#ffffff', 'lineColor': '#ffffff', 'fontSize': '16px'}}}%%
 graph TD
     A[Data Collection] --> B[Data Preprocessing]
     B --> C[Exploratory Analysis]
@@ -59,13 +62,14 @@ graph TD
     E --> G
     F --> G
     
-    style A fill:#ffffff,stroke:#2f3640,stroke-width:2px
-    style B fill:#ffffff,stroke:#2f3640,stroke-width:2px
-    style C fill:#ffffff,stroke:#2f3640,stroke-width:2px
-    style D fill:#ffffff,stroke:#2f3640,stroke-width:2px
-    style E fill:#ffffff,stroke:#2f3640,stroke-width:2px
-    style F fill:#ffffff,stroke:#2f3640,stroke-width:2px
-    style G fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style A fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style B fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style C fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style D fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style E fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style F fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    style G fill:#2f3640,stroke:#ffffff,stroke-width:2px,color:#ffffff
+
 ```
 
 ## 🛠️ Technical Stack
