@@ -35,6 +35,7 @@ This data analytics project focuses on scraping movie review data from IMDb's to
 ## 🔄 Data Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2f3640', 'textColor': '#2f3640', 'lineColor': '#2f3640', 'primaryBorderColor': '#2f3640'}}}%%
 flowchart TD
     A[IMDb Website] -->|Web Scraping| B[Raw Data]
     B -->|Data Cleaning| C[Processed Data]
@@ -47,6 +48,7 @@ flowchart TD
 ## 📊 Analysis Framework
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#2f3640', 'lineColor': '#2f3640', 'fontSize': '16px'}}}%%
 graph TD
     A[Data Collection] --> B[Data Preprocessing]
     B --> C[Exploratory Analysis]
@@ -56,6 +58,14 @@ graph TD
     D --> G[Insights Generation]
     E --> G
     F --> G
+    
+    style A fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style B fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style C fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style D fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style E fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style F fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style G fill:#ffffff,stroke:#2f3640,stroke-width:2px
 ```
 
 ## 🛠️ Technical Stack
@@ -102,10 +112,16 @@ Count |    ▄▄
 
 ### 2. Temporal Analysis
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#2f3640', 'lineColor': '#2f3640'}}}%%
 graph LR
     A[Year Grouping] --> B[Decade Analysis]
     B --> C[Trend Identification]
     C --> D[Pattern Recognition]
+    
+    style A fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style B fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style C fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style D fill:#ffffff,stroke:#2f3640,stroke-width:2px
 ```
 
 ### 3. Genre Analysis
@@ -166,12 +182,20 @@ graph LR
 ## 🔄 Project Workflow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#2f3640', 'lineColor': '#2f3640'}}}%%
 graph TD
     A[Data Collection] --> B[Data Cleaning]
     B --> C[Feature Engineering]
     C --> D[Statistical Analysis]
     D --> E[Visualization]
     E --> F[Report Generation]
+    
+    style A fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style B fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style C fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style D fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style E fill:#ffffff,stroke:#2f3640,stroke-width:2px
+    style F fill:#ffffff,stroke:#2f3640,stroke-width:2px
 ```
 
 ## 📝 Documentation Structure
