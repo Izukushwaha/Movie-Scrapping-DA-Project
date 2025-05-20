@@ -35,14 +35,21 @@ This data analytics project focuses on scraping movie review data from IMDb's to
 ## 🔄 Data Flow
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2f3640', 'textColor': '#2f3640', 'lineColor': '#2f3640', 'primaryBorderColor': '#2f3640'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#2f3640', 'lineColor': '#2f3640', 'fontSize': '16px', 'fontFamily': 'arial'}}}%%
 flowchart TD
-    A[IMDb Website] -->|Web Scraping| B[Raw Data]
-    B -->|Data Cleaning| C[Processed Data]
+    A[IMDb Website] -->|Web Scraping| B[Raw Data Collection]
+    B -->|Data Cleaning| C[Processed Dataset]
     C -->|Analysis| D[Statistical Insights]
     C -->|Visualization| E[Charts & Graphs]
-    D --> F[Final Report]
-    E --> F
+    D -->|Reporting| F[Final Report]
+    E -->|Integration| F
+    
+    style A fill:#ffffff,stroke:#2f3640,stroke-width:3px,color:#000000
+    style B fill:#ffffff,stroke:#2f3640,stroke-width:3px,color:#000000
+    style C fill:#ffffff,stroke:#2f3640,stroke-width:3px,color:#000000
+    style D fill:#ffffff,stroke:#2f3640,stroke-width:3px,color:#000000
+    style E fill:#ffffff,stroke:#2f3640,stroke-width:3px,color:#000000
+    style F fill:#ffffff,stroke:#2f3640,stroke-width:3px,color:#000000
 ```
 
 ## 📊 Analysis Framework
