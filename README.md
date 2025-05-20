@@ -237,7 +237,7 @@ graph TD
 
 ## 👤 Author
 
-[Your Name]
+Chirag Kumar
 
 ## 📄 License
 
