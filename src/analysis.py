@@ -1,3 +1,4 @@
+
 # src/analysis.py
 
 import pandas as pd
@@ -5,7 +6,7 @@ from preprocessing import load_and_clean_data
 
 def summary_statistics(df):
     stats = df.describe()
-    print("📊 Summary Statistics:\n", stats)
+    print("Summary Statistics:\n", stats)
 
 def decade_analysis(df):
     return df.groupby('decade')['rating'].agg(['mean', 'count'])
@@ -20,5 +21,5 @@ def find_outliers(df):
 if __name__ == "__main__":
     df = load_and_clean_data()
     summary_statistics(df)
-    print("\n📈 Decade-wise Analysis:\n", decade_analysis(df))
-    print("\n⚠️ Outliers:\n", find_outliers(df))
+    print("\nDecade-wise Analysis:\n", decade_analysis(df))
+    print("\nOutliers:\n", find_outliers(df))
