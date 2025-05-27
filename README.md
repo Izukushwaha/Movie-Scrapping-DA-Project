@@ -158,6 +158,11 @@ decade_analysis = df.groupby(df['year']//10*10).agg({
 
 Chirag Kumar
 
+## 🤝 Contributors
+
+- Nishant Singh
+
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
