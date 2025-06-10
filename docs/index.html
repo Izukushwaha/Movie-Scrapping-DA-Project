@@ -415,6 +415,51 @@
         })
         .append("title")
         .text(d => `${d.country}: ${d.internet}%`);
+        const regionFilter = document.getElementById("regionFilter");
+    const yearSlider = document.getElementById("yearSlider");
+    const yearValue = document.getElementById("yearValue");
+
+    regionFilter.addEventListener("change", updateCharts);
+    yearSlider.addEventListener("input", () => {
+        yearValue.textContent = yearSlider.value;
+        updateCharts();
+    });
+
+    function updateCharts() {
+        const selectedRegion = regionFilter.value;
+        const selectedYear = parseInt(yearSlider.value);
+        const selectedYearIndex = data.years.indexOf(selectedYear);
+
+        // 🔁 Update pie chart based on region
+        const techValues = Object.keys(data.technologies).map(tech => {
+            const regionIndex = data.regions.indexOf(selectedRegion);
+            return selectedRegion === 'all'
+                ? data.technologies[tech].reduce((a, b) => a + b, 0) / data.technologies[tech].length
+                : data.technologies[tech][regionIndex];
+        });
+
+        pieChart.data.datasets[0].data = techValues;
+        pieChart.update();
+
+        // 🔁 Highlight selected region in line chart or show only that
+        if (selectedRegion === "all") {
+            lineChart.data.datasets = data.regions.map(region => ({
+                label: region,
+                data: data.mobileInternet[region],
+                borderWidth: 2,
+                fill: false
+            }));
+        } else {
+            lineChart.data.datasets = [{
+                label: selectedRegion,
+                data: data.mobileInternet[selectedRegion],
+                borderWidth: 2,
+                fill: false
+            }];
+        }
+
+        lineChart.update();
+    }
     </script>
 </body>
 </html>
