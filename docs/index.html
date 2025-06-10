@@ -310,7 +310,111 @@
                 {country: 'South Korea', gdp: 35000, internet: 96, region: 'Asia'},
                 {country: 'Brazil', gdp: 6000, internet: 65, region: 'South America'}
             ]
+
         };
+
+        const ctxLine = document.getElementById('lineChart').getContext('2d');
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    const ctxBar = document.getElementById('barChart').getContext('2d');
+
+    const selectedRegion = 'North America';
+    const selectedYearIndex = data.years.length - 1; // default to 2024
+
+    // Line chart for Mobile Internet Adoption
+    const lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: data.years,
+            datasets: data.regions.map(region => ({
+                label: region,
+                data: data.mobileInternet[region],
+                borderWidth: 2,
+                fill: false
+            }))
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Pie chart for Technology Distribution
+    const techLabels = Object.keys(data.technologies);
+    const techValues = techLabels.map(tech => data.technologies[tech][data.regions.indexOf(selectedRegion)]);
+
+    const pieChart = new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: techLabels,
+            datasets: [{
+                data: techValues,
+                backgroundColor: ['#667eea', '#764ba2', '#e15f41', '#3dc1d3', '#f19066']
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Bar chart for Technology Adoption by Age Group (example static)
+    const barChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
+            datasets: [{
+                label: 'Adoption %',
+                data: [90, 85, 70, 55, 35],
+                backgroundColor: '#667eea'
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Scatterplot with D3.js
+    const svg = d3.select("#scatterplot")
+        .append("svg")
+        .attr("width", 400)
+        .attr("height", 300);
+
+    const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+    const width = +svg.attr("width") - margin.left - margin.right;
+    const height = +svg.attr("height") - margin.top - margin.bottom;
+
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear()
+        .domain([0, d3.max(data.scatterData, d => d.gdp) + 5000])
+        .range([0, width]);
+
+    const y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
+
+    g.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x));
+
+    g.append("g")
+        .call(d3.axisLeft(y));
+
+    g.selectAll(".dot")
+        .data(data.scatterData)
+        .enter()
+        .append("circle")
+        .attr("class", "dot")
+        .attr("cx", d => x(d.gdp))
+        .attr("cy", d => y(d.internet))
+        .attr("r", 6)
+        .attr("fill", d => {
+            if (d.region === 'Asia') return '#e15f41';
+            if (d.region === 'Europe') return '#3dc1d3';
+            if (d.region === 'North America') return '#667eea';
+            if (d.region === 'South America') return '#f19066';
+            return '#888';
+        })
+        .append("title")
+        .text(d => `${d.country}: ${d.internet}%`);
     </script>
 </body>
 </html>
