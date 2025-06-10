@@ -2,168 +2,186 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>All Chart Types</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Tech Adoption Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .chart-container {
+      background: #fff;
+      color: #333;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+    #scatterplot {
+      width: 100%;
+      height: 400px;
+    }
+    @media (max-width: 768px) {
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 p-8">
-  <div class="max-w-5xl mx-auto space-y-16">
-
-    <!-- Bar Chart -->
-    <div>
-      <h2 class="text-xl font-bold mb-4">Bar Chart</h2>
-      <canvas id="barChart" class="h-64"></canvas>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🌐 Global Technology Adoption Dashboard</h1>
+      <p>Tracking key tech trends across regions</p>
     </div>
 
-    <!-- Line Chart -->
-    <div>
-      <h2 class="text-xl font-bold mb-4">Line Chart</h2>
-      <canvas id="lineChart" class="h-64"></canvas>
-    </div>
+    <div class="chart-grid">
+      <div class="chart-container">
+        <h3>Mobile Internet Adoption</h3>
+        <canvas id="lineChart"></canvas>
+      </div>
 
-    <!-- Pie Chart -->
-    <div>
-      <h2 class="text-xl font-bold mb-4">Pie Chart</h2>
-      <canvas id="pieChart" class="h-64"></canvas>
-    </div>
+      <div class="chart-container">
+        <h3>Technology Distribution</h3>
+        <canvas id="pieChart"></canvas>
+      </div>
 
-    <!-- Doughnut Chart -->
-    <div>
-      <h2 class="text-xl font-bold mb-4">Doughnut Chart</h2>
-      <canvas id="doughnutChart" class="h-64"></canvas>
-    </div>
+      <div class="chart-container">
+        <h3>Adoption by Age Group</h3>
+        <canvas id="barChart"></canvas>
+      </div>
 
-    <!-- Polar Area Chart -->
-    <div>
-      <h2 class="text-xl font-bold mb-4">Polar Area Chart</h2>
-      <canvas id="polarAreaChart" class="h-64"></canvas>
+      <div class="chart-container">
+        <h3>Digital Divide: Internet Access vs GDP</h3>
+        <div id="scatterplot"></div>
+      </div>
     </div>
-
-    <!-- Radar Chart -->
-    <div>
-      <h2 class="text-xl font-bold mb-4">Radar Chart</h2>
-      <canvas id="radarChart" class="h-64"></canvas>
-    </div>
-
   </div>
 
   <script>
-    // Reusable data for simplicity
-    const labels = ['A', 'B', 'C', 'D', 'E'];
-    const data = [12, 19, 3, 5, 2];
-    const bgColors = [
-      'rgba(255, 99, 132, 0.6)',
-      'rgba(54, 162, 235, 0.6)',
-      'rgba(255, 206, 86, 0.6)',
-      'rgba(75, 192, 192, 0.6)',
-      'rgba(153, 102, 255, 0.6)'
-    ];
-
-    // Bar Chart
-    new Chart(document.getElementById('barChart'), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Bar Dataset',
-          data: data,
-          backgroundColor: bgColors,
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    });
-
-    // Line Chart
-    new Chart(document.getElementById('lineChart'), {
+    // --- Line Chart ---
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    new Chart(lineCtx, {
       type: 'line',
       data: {
-        labels: labels,
-        datasets: [{
-          label: 'Line Dataset',
-          data: data,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          fill: false,
-          tension: 0.3
-        }]
+        labels: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+        datasets: [
+          {
+            label: 'Asia',
+            data: [45, 52, 58, 65, 71, 76, 82],
+            borderColor: '#36a2eb',
+            fill: false
+          },
+          {
+            label: 'Africa',
+            data: [25, 29, 34, 40, 47, 54, 62],
+            borderColor: '#ff6384',
+            fill: false
+          }
+        ]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false
+        responsive: true
       }
     });
 
-    // Pie Chart
-    new Chart(document.getElementById('pieChart'), {
+    // --- Bar Chart ---
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
+        datasets: [{
+          label: 'Adoption Rate (%)',
+          data: [90, 85, 70, 55, 35],
+          backgroundColor: '#667eea'
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+
+    // --- Pie Chart ---
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
       type: 'pie',
       data: {
-        labels: labels,
+        labels: ['Mobile Internet', 'Social Media', 'E-commerce', 'Digital Banking', 'Cloud Services'],
         datasets: [{
-          data: data,
-          backgroundColor: bgColors
+          data: [82, 79, 68, 59, 62],
+          backgroundColor: ['#36a2eb', '#ff6384', '#ffcd56', '#4bc0c0', '#9966ff']
         }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false
+        responsive: true
       }
     });
 
-    // Doughnut Chart
-    new Chart(document.getElementById('doughnutChart'), {
-      type: 'doughnut',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: data,
-          backgroundColor: bgColors
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    });
+    // --- Scatterplot (D3.js) ---
+    const scatterData = [
+      { country: 'USA', gdp: 65000, internet: 95 },
+      { country: 'Germany', gdp: 48000, internet: 92 },
+      { country: 'India', gdp: 2200, internet: 54 },
+      { country: 'Nigeria', gdp: 2000, internet: 36 },
+      { country: 'Brazil', gdp: 9000, internet: 72 }
+    ];
 
-    // Polar Area Chart
-    new Chart(document.getElementById('polarAreaChart'), {
-      type: 'polarArea',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: data,
-          backgroundColor: bgColors
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    });
+    const svg = d3.select("#scatterplot")
+      .append("svg")
+      .attr("width", "100%")
+      .attr("height", 400)
+      .attr("viewBox", "0 0 500 400");
 
-    // Radar Chart
-    new Chart(document.getElementById('radarChart'), {
-      type: 'radar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Radar Dataset',
-          data: data,
-          backgroundColor: 'rgba(54, 162, 235, 0.3)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          pointBackgroundColor: 'rgba(54, 162, 235, 1)'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    });
+    const margin = { top: 20, right: 20, bottom: 40, left: 50 };
+    const width = 500 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    const x = d3.scaleLinear().domain([0, 70000]).range([margin.left, width]);
+    const y = d3.scaleLinear().domain([0, 100]).range([height, margin.top]);
+
+    svg.append("g")
+      .attr("transform", `translate(0,${height})`)
+      .call(d3.axisBottom(x).ticks(5));
+
+    svg.append("g")
+      .attr("transform", `translate(${margin.left},0)`)
+      .call(d3.axisLeft(y).ticks(5));
+
+    svg.selectAll("circle")
+      .data(scatterData)
+      .enter()
+      .append("circle")
+      .attr("cx", d => x(d.gdp))
+      .attr("cy", d => y(d.internet))
+      .attr("r", 6)
+      .attr("fill", "#764ba2")
+      .append("title")
+      .text(d => `${d.country}\nGDP: $${d.gdp}\nInternet: ${d.internet}%`);
   </script>
 </body>
 </html>
+
+
 
